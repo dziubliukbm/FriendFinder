@@ -32,7 +32,7 @@ let people = [{
 },
 {
     "name":"Robert",
-    "photo":"https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
+    "photo":"https://www.imgacademy.com/sites/default/files/homepage-hero-2019-q1-edited-tennis-bg.jpg",
     "scores":[
         1,
         1,
