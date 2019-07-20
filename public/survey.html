@@ -57,6 +57,7 @@
                 placeholder="Name"
                 aria-describedby="basic-addon1"
                 id="name"
+                required
               />
             </div>
             <h2>Link to Photo Image (Required)</h2>
@@ -68,6 +69,7 @@
                 placeholder="Link to your Photo"
                 aria-describedby="basic-addon1"
                 id="photoLink"
+                requireds
               />
             </div>
             <div class="form-group">
@@ -76,12 +78,12 @@
                 Your mind is always buzzing with unexplored ideas and plans.
               </p>
               <select
-                style="width: 150px; height: 30px;"
+                style="width: 210px; height: 30px;"
                 placeholder="Link to your Photo"
                 class="form-control form-control-lg"
                 id="q1"
               >
-                <option></option>
+                
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -95,12 +97,12 @@
                 imagination.
               </p>
               <select
-                style="width: 150px; height: 30px;"
+                style="width: 210px; height: 30px;"
                 placeholder="Link to your Photo"
                 class="form-control form-control-lg"
                 id="q2"
               >
-                <option></option>
+                
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -114,12 +116,12 @@
                 some pressure.
               </p>
               <select
-                style="width: 150px; height: 30px;"
+                style="width: 210px; height: 30px;"
                 placeholder="Link to your Photo"
                 class="form-control form-control-lg"
                 id="q3"
               >
-                <option></option>
+                
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -132,12 +134,12 @@
                 You rarely do something just out of sheer curiosity.
               </p>
               <select
-                style="width: 150px; height: 30px;"
+                style="width: 210px; height: 30px;"
                 placeholder="Link to your Photo"
                 class="form-control form-control-lg"
                 id="q4"
               >
-                <option></option>
+                
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -148,12 +150,12 @@
               <label for="q"><h3>Question 5</h3></label>
               <p class="font-weight-bold">People can rarely upset you.</p>
               <select
-                style="width: 150px; height: 30px;"
+                style="width: 210px; height: 30px;"
                 placeholder="Link to your Photo"
                 class="form-control form-control-lg"
                 id="q5"
               >
-                <option></option>
+                
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -167,12 +169,12 @@
                 feelings.
               </p>
               <select
-                style="width: 150px; height: 30px;"
+                style="width: 210px; height: 30px;"
                 placeholder="Link to your Photo"
                 class="form-control form-control-lg"
                 id="q6"
               >
-                <option></option>
+               
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -186,12 +188,12 @@
                 sensitivities.
               </p>
               <select
-                style="width: 150px; height: 30px;"
+                style="width: 210px; height: 30px;"
                 placeholder="Link to your Photo"
                 class="form-control form-control-lg"
                 id="q7"
               >
-                <option></option>
+                
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -204,12 +206,12 @@
                 You rarely get carried away by fantasies and ideas.
               </p>
               <select
-                style="width: 150px; height: 30px;"
+                style="width: 210px; height: 30px;"
                 placeholder="Link to your Photo"
                 class="form-control form-control-lg"
                 id="q8"
               >
-                <option></option>
+                
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -223,12 +225,12 @@
                 of whether they are supported by facts or not.
               </p>
               <select
-                style="width: 150px; height: 30px;"
+                style="width: 210px; height: 30px;"
                 placeholder="Link to your Photo"
                 class="form-control form-control-lg"
                 id="q9"
               >
-                <option></option>
+                
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -242,12 +244,12 @@
                 people.
               </p>
               <select
-                style="width: 150px; height: 30px;"
+                style="width: 210px; height: 30px;"
                 placeholder="Link to your Photo"
                 class="form-control form-control-lg"
                 id="q10"
               >
-                <option></option>
+                
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -265,6 +267,7 @@
             </div>
             <hr class="my-4" />
             <p>
+              
               <a href="/api/people">API Friends list</a> |
               <a href="#">Github Repo</a>
             </p>
@@ -293,6 +296,25 @@
       </div>
     </div>
     <script type="text/javascript">
+      (function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+      
+      
       $(".submit").on("click", function() {
         var newPerson = {
           name: $("#name")
@@ -315,9 +337,7 @@
           ]
         };
         var curentPersonScore = newPerson.scores;
-
-        console.log(curentPersonScore);
-
+        console.log('cureent person score'+curentPersonScore)
         var curentURL = window.location.origin;
 
         $.get(curentURL + "/api/people", function(response) {
@@ -325,19 +345,16 @@
           let totalDifferencePoints = [];
           for (var i = 0; i < data.length; ++i) {
             let personScore = data[i].scores;
-            console.log("this is : " + personScore);
+            console.log("SHoud be person score 3 timess"+personScore)
 
             let substractScores = function(a1, a2) {
               let scoreDifferenceArr = [];
 
               for (var j = 0; j < a1.length; j++) {
-                if (a2[j] === "") {
-                  console.log("lol");
-                  a2[j] = 0;
-                }
+                
                 scoreDifferenceArr.push(Math.abs(a1[j] - a2[j]));
               }    
-              console.log('this is result :'+scoreDifferenceArr)
+              console.log('array of difference :'+scoreDifferenceArr)
 
               let sumScore = 0;
               let totalDifference = function() {
@@ -355,7 +372,7 @@
           console.log("array scores3:"+totalDifferencePoints)
           
           let bestMatched = function (){
-            console.log(totalDifferencePoints)
+            console.log('what is this'+totalDifferencePoints)
             let best = totalDifferencePoints[0];
 
             for (let i=0; i<totalDifferencePoints.length; i++){
@@ -364,18 +381,23 @@
               }
        
             }
-            console.log('this is best:',best)
-            console.log('render this:',best.user.photo)
+          
             $('#friend_name').append("<p>"+ best.user.name +"</p>");  
             $('#friend_photo').append("<img src="+best.user.photo+">");         
-       
+          
              }
           bestMatched(totalDifferencePoints)
-          
+
         });
 
-        // $.post(curentURL+"/api/people", newPerson)
+        $.post(curentURL+"/api/people", newPerson)
       });
     </script>
+    <style>
+    img {
+      height: 100px;
+      width: 100px;
+    }
+    </style>
   </body>
 </html>

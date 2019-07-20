@@ -10,8 +10,8 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
  
-require('../routing/apiRoutes.js')(app);
-require('../routing/htnlRoutes.js')(app);
+require('./routing/apiRoutes')(app);
+require('./routing/htnlRoutes')(app);
 
 
 
