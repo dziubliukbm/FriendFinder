@@ -7,6 +7,10 @@
     <title>FindFrienSurvey</title>
     <link
       rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.css"
+    />
+    <link
+      rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
@@ -22,6 +26,8 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery.js"></script>
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"
@@ -50,6 +56,7 @@
                 class="form-control"
                 placeholder="Name"
                 aria-describedby="basic-addon1"
+                id="name"
               />
             </div>
             <h2>Link to Photo Image (Required)</h2>
@@ -60,6 +67,7 @@
                 class="form-control"
                 placeholder="Link to your Photo"
                 aria-describedby="basic-addon1"
+                id="photoLink"
               />
             </div>
             <div class="form-group">
@@ -247,17 +255,103 @@
                 <option value="5">5 (Strongly Agree)</option>
               </select>
               <br />
-              <button type="button" class="btn btn-primary btn-lg btn-block">
+              <button
+                type="submit"
+                class="btn btn-primary btn-lg btn-block submit"
+              >
                 Block level button
               </button>
             </div>
             <hr class="my-4" />
             <p>
-              <a href="#">API Friends list</a> | <a href="#">Github Repo</a>
+              <a href="/api/people">API Friends list</a> |
+              <a href="#">Github Repo</a>
             </p>
           </div>
         </div>
       </div>
     </div>
+    <script type="text/javascript">
+      $(".submit").on("click", function() {
+        var newPerson = {
+          name: $("#name")
+            .val()
+            .trim(),
+          photo: $("#photoLink")
+            .val()
+            .trim(),
+          scores: [
+            $("#q1").val(),
+            $("#q2").val(),
+            $("#q3").val(),
+            $("#q4").val(),
+            $("#q5").val(),
+            $("#q6").val(),
+            $("#q7").val(),
+            $("#q8").val(),
+            $("#q9").val(),
+            $("#q10").val()
+          ]
+        };
+        var curentPersonScore = newPerson.scores;
+
+        console.log(curentPersonScore);
+
+        var curentURL = window.location.origin;
+
+        $.get(curentURL + "/api/people", function(response) {
+          let data = response;
+          let totalDifferencePoints = [];
+          for (var i = 0; i < data.length; ++i) {
+            let personScore = data[i].scores;
+            console.log("this is : " + personScore);
+
+            let substractScores = function(a1, a2) {
+              let scoreDifferenceArr = [];
+
+              for (var j = 0; j < a1.length; j++) {
+                if (a2[j] === "") {
+                  console.log("lol");
+                  a2[j] = 0;
+                }
+                scoreDifferenceArr.push(Math.abs(a1[j] - a2[j]));
+              }    
+              console.log('this is result :'+scoreDifferenceArr)
+
+              let sumScore = 0;
+              let totalDifference = function() {
+                for (k = 0; k < scoreDifferenceArr.length; k++) {
+                  sumScore += scoreDifferenceArr[k];
+                }
+                totalDifferencePoints.push({sumScore, user: data[i]});
+              };
+              totalDifference(scoreDifferenceArr);
+              console.log("score: " + sumScore);
+
+            };
+            substractScores(personScore, curentPersonScore);
+          }
+          console.log("array scores3:"+totalDifferencePoints)
+          
+          let bestMatched = function (){
+            console.log(totalDifferencePoints)
+            let best = totalDifferencePoints[0];
+
+            for (let i=0; i<totalDifferencePoints.length; i++){
+              if(totalDifferencePoints[i].sumScore < best.sumScore){
+                best = totalDifferencePoints[i];
+              }
+       
+            }
+            console.log('this is best:',best)
+            // return best;
+          }
+          bestMatched(totalDifferencePoints)
+          
+        });
+
+        // $.post(curentURL+"/api/people", newPerson)
+      });
+    </script>
   </body>
 </html>
