@@ -1,9 +1,8 @@
 # FriendFinder
 Application which using the Express package for Node.js!
 
-Check out the deployed app on Heroku [here]()!
+Check out the deployed app on Heroku [here]( https://calm-earth-19108.herokuapp.com/)!
 
-This app uses Express to serve 2 static HTML files and 2 API routes to get and post data.
 
 
 
