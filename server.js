@@ -1,20 +1,33 @@
-const express = require('express');
+
+
+
+var express = require('express');
 var bodyParser = require('body-parser');
-var app = express();
 var path = require('path');
 
-const PORT = process.env.PORT || 8080;
 
-app.use(bodyParser.urlencoded({ extended: false }))
- 
-// parse application/json
-app.use(bodyParser.json())
- 
-require('./routing/apiRoutes')(app);
-require('./routing/htnlRoutes')(app);
+
+var apiRoutes = require('./app/routing/api-routes.js');
+var htmlRoutes = require('./app/routing/html-routes.js');
 
 
 
-app.listen(PORT, function(){
-    console.log('App lisening on PORT: ' + PORT);
+var app = express();
+var PORT = process.env.PORT || 8080;
+
+
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.text());
+app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
+
+
+
+apiRoutes(app); 
+htmlRoutes(app); 
+
+
+app.listen(PORT, function() {
+  console.log("App listening on PORT: " + PORT);
 });
