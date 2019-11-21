@@ -1,17 +1,16 @@
 # FriendFinder
 Application which using the Express package for Node.js!
 
-Check out the deployed app on Heroku [here]( https://calm-earth-19108.herokuapp.com/)!
 
 
+FriendFinder
+Friend Finder implements friend matching based on the user's responses to a ten question survey. The user responds to questions with values from 1 (Strongly Disagree) to 5 (Strongly Agree). When the survey is submitted, an existing user record closest to the current user's responses is found and returned. The closest set of user responses is defined as the set with the lowest absolute difference for all ten questions combined.
 
+View deployed app [here]( https://calm-earth-19108.herokuapp.com/)!
 
-### Click the button to take the quiz - you will go to survey page where you will have to answer  for 10 question;
-
-### Add your name and a link to a picture of yourself - that field are required;
-
-### On click the submit button  - you will have results and get your BestMatched friend ( modal window with name  and photo) ;
-
-### Also you can check API file which include people and their scores;
-
-
+Technologies Used:
+HTML5
+CSS3
+JavaScript
+Express
+Path
